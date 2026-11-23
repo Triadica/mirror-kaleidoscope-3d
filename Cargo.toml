@@ -1,0 +1,45 @@
+[package]
+name = "mirror-kaleidoscope-3d"
+version = "0.1.0"
+edition = "2021"
+default-run = "mirror-kaleidoscope"
+description = "10-in-1 Deep Reflection & Refraction Optical Ray Tracer in Rust + Apple Metal"
+
+[[bin]]
+name = "mirror-kaleidoscope"
+path = "src/main.rs"
+
+[[bin]]
+name = "render-snapshots"
+path = "src/bin/render_snapshots.rs"
+
+[dependencies]
+glam = "0.29"
+winit = "0.30"
+png = "0.17"
+raw-window-handle = "0.6"
+raw-window-metal = "1.1"
+objc2 = "0.6"
+objc2-foundation = { version = "0.3", features = ["NSArray", "NSString", "NSError"] }
+objc2-core-foundation = "0.3"
+objc2-quartz-core = { version = "0.3", features = ["CALayer", "CAMetalLayer", "objc2-metal"] }
+objc2-metal = { version = "0.3", features = [
+    "MTLBuffer",
+    "MTLCommandBuffer",
+    "MTLCommandEncoder",
+    "MTLCommandQueue",
+    "MTLComputeCommandEncoder",
+    "MTLComputePipeline",
+    "MTLDevice",
+    "MTLDrawable",
+    "MTLLibrary",
+    "MTLPixelFormat",
+    "MTLResource",
+    "MTLTexture",
+    "MTLTypes",
+] }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
